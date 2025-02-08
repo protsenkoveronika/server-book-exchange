@@ -12,7 +12,7 @@ class BookService {
     const books = await Book.find(filter).populate('owner', 'username');
     return books.map((book) => ({
       ...book._doc,
-      photo: book.photo ? `http://localhost:8000/${book.photo}` : null,
+      photo: book.photo ? `https://server-book-exchange.onrender.com/${book.photo}` : null,
     }));
   }
 
@@ -40,7 +40,7 @@ class BookService {
       author: book.author,
       location: book.location,
       description: book.description,
-      photo: book.photo ? `http://localhost:8000/${book.photo}` : null,
+      photo: book.photo ? `https://server-book-exchange.onrender.com/${book.photo}` : null,
       status: book.status,
       createdAt: book.createdAt,
       owner: {
@@ -67,7 +67,7 @@ class BookService {
         __dirname,
         '..',
         '..',
-        book.photo.replace('http://localhost:8000/', '')
+        book.photo.replace('https://server-book-exchange.onrender.com/', '')
       );
 
       if (fs.existsSync(oldPhotoPath)) {
@@ -111,7 +111,7 @@ class BookService {
     const books = await Book.find({ owner: ownerId }).populate('owner', 'username email');
     return books.map((book) => ({
       ...book._doc,
-      photo: book.photo ? `http://localhost:8000/${book.photo}` : null,
+      photo: book.photo ? `https://server-book-exchange.onrender.com/${book.photo}` : null,
     }));
   }
 
@@ -132,7 +132,7 @@ class BookService {
         author: reservation.book.author,
         location: reservation.book.location,
         description: reservation.book.description,
-        photo: reservation.book.photo ? `http://localhost:8000/${reservation.book.photo}` : null,
+        photo: reservation.book.photo ? `https://server-book-exchange.onrender.com/${reservation.book.photo}` : null,
         status: reservation.book.status,
         owner: reservation.book.owner.username,
       },
